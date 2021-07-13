@@ -6,8 +6,9 @@ if [ -n "$ENSURE_NAMENODE_DIR" ]; then
       CLUSTERID_OPTS="-clusterid $ENSURE_NAMENODE_CLUSTERID"
    fi
    if [ ! -d "$ENSURE_NAMENODE_DIR" ]; then
+      mkdir -p /tmp/hadoop-hadoop/dfs/name
       /opt/hadoop/bin/hdfs namenode -format -force $CLUSTERID_OPTS
-        fi
+   fi
 fi
 
 
