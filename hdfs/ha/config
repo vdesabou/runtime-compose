@@ -46,6 +46,7 @@ HDFS-SITE.XML_dfs.block.access.token.lifetime=10
 
 HDFS-SITE.XML_dfs.namenode.kerberos.principal=nn/_HOST@EXAMPLE.COM
 HDFS-SITE.XML_dfs.namenode.keytab.file=/opt/hadoop/etc/hadoop/nn.keytab
+HDFS-SITE.XML_dfs.namenode.kerberos.internal.spnego.principal=HTTP/_HOST@EXAMPLE.COM
 HDFS-SITE.XML_dfs.datanode.kerberos.principal=dn/_HOST@EXAMPLE.COM
 HDFS-SITE.XML_dfs.datanode.keytab.file=/opt/hadoop/etc/hadoop/dn.keytab
 HDFS-SITE.XML_dfs.web.authentication.kerberos.keytab=/opt/hadoop/etc/hadoop/HTTP.keytab
@@ -53,6 +54,7 @@ HDFS-SITE.XML_dfs.web.authentication.kerberos.principal=HTTP/_HOST@EXAMPLE.COM
 HDFS-SITE.XML_dfs.journalnode.kerberos.principal=jn/_HOST@EXAMPLE.COM
 HDFS-SITE.XML_dfs.journalnode.keytab.file=/opt/hadoop/etc/hadoop/jn.keytab
 HDFS-SITE.XML_dfs.journalnode.kerberos.internal.spnego.principal=HTTP/_HOST@EXAMPLE.COM
+HDFS-SITE.XML_ignore.secure.ports.for.testing= true
 
 SSL-SERVER.XML_ssl.server.keystore.location=/opt/hadoop/etc/hadoop/hadoop.keystore
 SSL-SERVER.XML_ssl.server.keystore.password=Welcome1
@@ -70,7 +72,7 @@ YARN-SITE.XML_yarn.nodemanager.pmem-check-enabled=false
 YARN-SITE.XML_yarn.nodemanager.delete.debug-delay-sec=600
 YARN-SITE.XML_yarn.nodemanager.vmem-check-enabled=false
 YARN-SITE.XML_yarn.nodemanager.aux-services=mapreduce_shuffle
-YARN-SITE.XML_yarn.resourcemanager.principal=rm/resourcemanager@EXAMPLE.COM
+YARN-SITE.XML_yarn.resourcemanager.principal=rm/_HOST@EXAMPLE.COM
 YARN-SITE.XML_yarn.resourcemanager.keytab=/opt/hadoop/etc/hadoop/rm.keytab
 YARN-SITE.XML_yarn.nodemanager.principal=nm/_HOST@EXAMPLE.COM
 YARN-SITE.XML_yarn.nodemanager.keytab=/opt/hadoop/etc/hadoop/nm.keytab
