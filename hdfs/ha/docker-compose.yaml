@@ -46,6 +46,7 @@ services:
       image: flokkr/hadoop:${VERSION}
       hostname: journal1
       container_name: journal1
+      privileged: true
       env_file:
         - ./config
       command: ["hdfs", "journalnode"]
@@ -56,6 +57,7 @@ services:
       image: flokkr/hadoop:${VERSION}
       hostname: journal2
       container_name: journal2
+      privileged: true
       env_file:
         - ./config
       command: ["hdfs", "journalnode"]
@@ -66,6 +68,7 @@ services:
       image: flokkr/hadoop:${VERSION}
       hostname: journal3
       container_name: journal3
+      privileged: true
       env_file:
         - ./config
       command: ["hdfs", "journalnode"]

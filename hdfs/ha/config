@@ -12,6 +12,20 @@ LOG4J.PROPERTIES_log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH
 
 MAPRED-SITE.XML_mapreduce.framework.name=yarn
 
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.maximum-applications=10000
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.maximum-am-resource-percent=0.1
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.resource-calculator=org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.queues=default
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.default.capacity=100
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.default.user-limit-factor=1
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.default.maximum-capacity=100
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.default.state=RUNNING
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.default.acl_submit_applications=*
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.default.acl_administer_queue=*
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.node-locality-delay=40
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.queue-mappings=
+CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.queue-mappings-override.enable=false
+
 HDFS-SITE.XML_dfs.replication=3
 HDFS-SITE.XML_dfs.journalnode.edits.dir=/data/journalnode
 
@@ -22,7 +36,7 @@ HDFS-SITE.XML_dfs.namenode.rpc-address.sh.nn2=namenode2:9820
 HDFS-SITE.XML_dfs.ha.fencing.methods=shell(/bin/true)
 HDFS-SITE.XML_dfs.client.failover.proxy.provider.sh=org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
 HDFS-SITE.XML_dfs.ha.automatic-failover.enabled=false
-HDFS-SITE.XML_dfs.namenode.shared.edits.dir=journal://journal1:8485;journal2:8485;journal3:8485/sh
+HDFS-SITE.XML_dfs.namenode.shared.edits.dir=qjournal://journal1:8485;journal2:8485;journal3:8485/sh
 
 HDFS-SITE.XML_dfs.data.transfer.protection=authentication
 HDFS-SITE.XML_dfs.http.policy=HTTPS_ONLY
@@ -38,6 +52,7 @@ HDFS-SITE.XML_dfs.web.authentication.kerberos.keytab=/opt/hadoop/etc/hadoop/HTTP
 HDFS-SITE.XML_dfs.web.authentication.kerberos.principal=HTTP/_HOST@EXAMPLE.COM
 HDFS-SITE.XML_dfs.journalnode.kerberos.principal=jn/_HOST@EXAMPLE.COM
 HDFS-SITE.XML_dfs.journalnode.keytab.file=/opt/hadoop/etc/hadoop/jn.keytab
+HDFS-SITE.XML_dfs.journalnode.kerberos.internal.spnego.principal=HTTP/_HOST@EXAMPLE.COM
 
 SSL-SERVER.XML_ssl.server.keystore.location=/opt/hadoop/etc/hadoop/hadoop.keystore
 SSL-SERVER.XML_ssl.server.keystore.password=Welcome1
@@ -50,6 +65,11 @@ SSL-CLIENT.XML_ssl.client.keystore.keypassword=Welcome1
 SSL-CLIENT.XML_ssl.client.truststore.location=/opt/hadoop/etc/hadoop/truststore
 SSL-CLIENT.XML_ssl.client.truststore.password=Welcome1
 
+YARN-SITE.XML_yarn.resourcemanager.hostname=resourcemanager
+YARN-SITE.XML_yarn.nodemanager.pmem-check-enabled=false
+YARN-SITE.XML_yarn.nodemanager.delete.debug-delay-sec=600
+YARN-SITE.XML_yarn.nodemanager.vmem-check-enabled=false
+YARN-SITE.XML_yarn.nodemanager.aux-services=mapreduce_shuffle
 YARN-SITE.XML_yarn.resourcemanager.principal=rm/resourcemanager@EXAMPLE.COM
 YARN-SITE.XML_yarn.resourcemanager.keytab=/opt/hadoop/etc/hadoop/rm.keytab
 YARN-SITE.XML_yarn.nodemanager.principal=nm/_HOST@EXAMPLE.COM
