@@ -2,7 +2,7 @@ version: "3"
 services:
    krb5:
       image: flokkr/krb5
-      hostname: krb5
+      hostname: krb5.kerberos-demo.local
       container_name: krb5
       ports:
         - 8081:8081
@@ -11,7 +11,7 @@ services:
 
    namenode1:
       image: flokkr/hadoop:${VERSION}
-      hostname: namenode1
+      hostname: namenode1.kerberos-demo.local
       container_name: namenode1
       ports:
          - 9870:9870
@@ -27,7 +27,7 @@ services:
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
    namenode2:
       image: flokkr/hadoop:${VERSION}
-      hostname: namenode2
+      hostname: namenode2.kerberos-demo.local
       container_name: namenode2
       ports:
          - 9871:9870
@@ -44,7 +44,7 @@ services:
 
    journal1:
       image: flokkr/hadoop:${VERSION}
-      hostname: journal1
+      hostname: journal1.kerberos-demo.local
       container_name: journal1
       env_file:
         - ./config
@@ -56,7 +56,7 @@ services:
 
    journal2:
       image: flokkr/hadoop:${VERSION}
-      hostname: journal2
+      hostname: journal2.kerberos-demo.local
       container_name: journal2
       env_file:
         - ./config
@@ -68,7 +68,7 @@ services:
 
    journal3:
       image: flokkr/hadoop:${VERSION}
-      hostname: journal3
+      hostname: journal3.kerberos-demo.local
       container_name: journal3
       env_file:
         - ./config
@@ -81,7 +81,7 @@ services:
    datanode:
       image: flokkr/hadoop:${VERSION}
       command: ["hdfs", "datanode"]
-      hostname: datanode
+      hostname: datanode.kerberos-demo.local
       container_name: datanode
       env_file:
         - ./config
@@ -93,7 +93,7 @@ services:
 
    resourcemanager:
       image: flokkr/hadoop:${VERSION}
-      hostname: resourcemanager
+      hostname: resourcemanager.kerberos-demo.local
       container_name: resourcemanager
       command: ["yarn", "resourcemanager"]
       ports:
@@ -105,10 +105,14 @@ services:
 
    activator:
       image: flokkr/hadoop:${VERSION}
-      hostname: activator
+      hostname: activator.kerberos-demo.local
       container_name: activator
       command: ["hdfs", "haadmin", "-transitionToActive", "nn1"]
       env_file:
         - ./config
       environment:
          SLEEP_SECONDS: 60
+
+networks:
+   default:
+      name: kerberos-demo.local
