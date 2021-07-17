@@ -81,6 +81,7 @@ services:
    datanode:
       image: flokkr/hadoop:${VERSION}
       command: ["hdfs", "datanode"]
+      hostname: datanode
       container_name: datanode
       env_file:
         - ./config
@@ -93,6 +94,7 @@ services:
    resourcemanager:
       image: flokkr/hadoop:${VERSION}
       hostname: resourcemanager
+      container_name: resourcemanager
       command: ["yarn", "resourcemanager"]
       ports:
          - 8088:8088
@@ -103,6 +105,8 @@ services:
 
    activator:
       image: flokkr/hadoop:${VERSION}
+      hostname: activator
+      container_name: activator
       command: ["hdfs", "haadmin", "-transitionToActive", "nn1"]
       env_file:
         - ./config
