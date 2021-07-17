@@ -20,10 +20,9 @@ services:
       environment:
           ENSURE_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
           SLEEP_SECONDS: 20
-          HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+          # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "namenode"]
       volumes:
-         - ./namenodeformat.sh:/opt/launcher/plugins/012_namenodeformat/namenodeformat.sh
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
    namenode2:
       image: flokkr/hadoop:${VERSION}
@@ -35,11 +34,11 @@ services:
         - ./config
       environment:
           ENSURE_STANDBY_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
+          #ENSURE_NAMENODE_CLUSTERID: "sh"
           SLEEP_SECONDS: 40
-          HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+          # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "namenode"]
       volumes:
-         - ./namenodeformat.sh:/opt/launcher/plugins/012_namenodeformat/namenodeformat.sh
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
 
    journal1:
@@ -49,7 +48,7 @@ services:
       env_file:
         - ./config
       environment:
-         HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+         # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "journalnode"]
       volumes:
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
@@ -61,7 +60,7 @@ services:
       env_file:
         - ./config
       environment:
-         HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+         # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "journalnode"]
       volumes:
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
@@ -74,7 +73,7 @@ services:
         - ./config
       command: ["hdfs", "journalnode"]
       environment:
-         HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+         # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       volumes:
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
 
@@ -87,7 +86,7 @@ services:
         - ./config
       environment:
          SLEEP_SECONDS: 50
-         HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
+         # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       volumes:
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
 
