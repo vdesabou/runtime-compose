@@ -20,6 +20,7 @@ services:
       environment:
           ENSURE_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
           SLEEP_SECONDS: 20
+          HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "namenode"]
       volumes:
          - ./namenodeformat.sh:/opt/launcher/plugins/012_namenodeformat/namenodeformat.sh
@@ -35,6 +36,7 @@ services:
       environment:
           ENSURE_STANDBY_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
           SLEEP_SECONDS: 40
+          HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "namenode"]
       volumes:
          - ./namenodeformat.sh:/opt/launcher/plugins/012_namenodeformat/namenodeformat.sh
@@ -46,6 +48,8 @@ services:
       container_name: journal1
       env_file:
         - ./config
+      environment:
+         HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "journalnode"]
       volumes:
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
