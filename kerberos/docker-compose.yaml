@@ -4,6 +4,8 @@ services:
       image: flokkr/krb5
       ports:
         - 8081:8081
+      volumes:
+      - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
    namenode:
       image: flokkr/hadoop:${HADOOP_VERSION}
       hostname: namenode
@@ -14,11 +16,15 @@ services:
         - ./config
       environment:
           ENSURE_NAMENODE_DIR: "/tmp/hadoop-hadoop/dfs/name"
+      volumes:
+      - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
    datanode:
       image: flokkr/hadoop:${HADOOP_VERSION}
       command: ["hdfs", "datanode"]
       env_file:
         - ./config
+      volumes:
+      - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
    resourcemanager:
       image: flokkr/hadoop:${HADOOP_VERSION}
       hostname: resourcemanager
@@ -27,9 +33,12 @@ services:
          - 8088:8088
       env_file:
         - ./config
-
+      volumes:
+      - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
    nodemanager:
       image: flokkr/hadoop:${HADOOP_VERSION}
       command: ["yarn", "nodemanager"]
       env_file:
         - ./config
+      volumes:
+      - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
