@@ -1,9 +1,6 @@
 CORE-SITE.XML_fs.defaultFS=hdfs://sh
 CORE-SITE.XML_fs.default.name=hdfs://sh
-CORE-SITE.XML_dfs.data.transfer.protection=authentication
-CORE-SITE.XML_hadoop.security.authentication=kerberos
-CORE-SITE.XML_hadoop.security.authorization=true
-CORE-SITE.XML_hadoop.security.auth_to_local=RULE:[2:$1@$0](.*)s/.*/root/
+
 
 LOG4J.PROPERTIES_log4j.rootLogger=INFO, stdout
 LOG4J.PROPERTIES_log4j.appender.stdout=org.apache.log4j.ConsoleAppender
@@ -11,6 +8,12 @@ LOG4J.PROPERTIES_log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 LOG4J.PROPERTIES_log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
 
 MAPRED-SITE.XML_mapreduce.framework.name=yarn
+
+YARN-SITE.XML_yarn.resourcemanager.hostname=resourcemanager
+YARN-SITE.XML_yarn.nodemanager.pmem-check-enabled=false
+YARN-SITE.XML_yarn.nodemanager.delete.debug-delay-sec=600
+YARN-SITE.XML_yarn.nodemanager.vmem-check-enabled=false
+YARN-SITE.XML_yarn.nodemanager.aux-services=mapreduce_shuffle
 
 CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.maximum-applications=10000
 CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.maximum-am-resource-percent=0.1
@@ -25,6 +28,11 @@ CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.root.default.acl_administer_queue
 CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.node-locality-delay=40
 CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.queue-mappings=
 CAPACITY-SCHEDULER.XML_yarn.scheduler.capacity.queue-mappings-override.enable=false
+
+CORE-SITE.XML_dfs.data.transfer.protection=authentication
+CORE-SITE.XML_hadoop.security.authentication=kerberos
+CORE-SITE.XML_hadoop.security.authorization=true
+CORE-SITE.XML_hadoop.security.auth_to_local=RULE:[2:$1@$0](.*)s/.*/root/
 
 HDFS-SITE.XML_dfs.replication=3
 HDFS-SITE.XML_dfs.journalnode.edits.dir=/data/journalnode
@@ -67,11 +75,6 @@ SSL-CLIENT.XML_ssl.client.keystore.keypassword=Welcome1
 SSL-CLIENT.XML_ssl.client.truststore.location=/opt/hadoop/etc/hadoop/truststore
 SSL-CLIENT.XML_ssl.client.truststore.password=Welcome1
 
-YARN-SITE.XML_yarn.resourcemanager.hostname=resourcemanager
-YARN-SITE.XML_yarn.nodemanager.pmem-check-enabled=false
-YARN-SITE.XML_yarn.nodemanager.delete.debug-delay-sec=600
-YARN-SITE.XML_yarn.nodemanager.vmem-check-enabled=false
-YARN-SITE.XML_yarn.nodemanager.aux-services=mapreduce_shuffle
 YARN-SITE.XML_yarn.resourcemanager.principal=rm/_HOST@EXAMPLE.COM
 YARN-SITE.XML_yarn.resourcemanager.keytab=/opt/hadoop/etc/hadoop/rm.keytab
 YARN-SITE.XML_yarn.nodemanager.principal=nm/_HOST@EXAMPLE.COM
@@ -79,7 +82,7 @@ YARN-SITE.XML_yarn.nodemanager.keytab=/opt/hadoop/etc/hadoop/nm.keytab
 YARN-SITE.XML_yarn.timeline-service.principal=ts/_HOST@EXAMPLE.COM
 YARN-SITE.XML_yarn.timeline-service.keytab=/opt/hadoop/etc/hadoop/ts.keytab
 YARN-SITE.XML_yarn.web-proxy.principal=wp/_HOST@EXAMPLE.COM
-YARN-SITE.XML_yarn.web-proxy.keytab=/opt/hadoop/etc/hadoop/wp.keytab
+YARN-SITE.XML_yarn.web-proxy.keytab=/opt/hadoop/aetc/hadoop/wp.keytab
 YARN-SITE.XML_yarn.resourcemanager.webapp.spnego-keytab-file=/opt/hadoop/etc/hadoop/HTTP.keytab
 YARN-SITE.XML_yarn.resourcemanager.webapp.spnego-principal=HTTP/_HOST@EXAMPLE.COM
 YARN-SITE.XML_yarn.nodemanager.webapp.spnego-keytab-file=/opt/hadoop/etc/hadoop/HTTP.keytab
