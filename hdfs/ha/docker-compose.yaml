@@ -47,7 +47,7 @@ services:
       container_name: journal1
       env_file:
         - ./config
-      environment:
+      #environment:
          # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "journalnode"]
       volumes:
@@ -59,7 +59,7 @@ services:
       container_name: journal2
       env_file:
         - ./config
-      environment:
+      #environment:
          # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       command: ["hdfs", "journalnode"]
       volumes:
@@ -72,7 +72,7 @@ services:
       env_file:
         - ./config
       command: ["hdfs", "journalnode"]
-      environment:
+      #environment:
          # HADOOP_OPTS: "-Djava.net.preferIPv4Stack=true -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug"
       volumes:
          - ./krb5.conf:/opt/launcher/plugins/011_kerberos/krb5.conf
